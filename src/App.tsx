@@ -1,6 +1,7 @@
 import TodoListState from "./views/TodoListState";
 import TodoListStateComplete from "./views/TodoListStateComplete";
 import TodoListReducerComplete from "./views/TodoListReducerComplete";
+import TodoListReducerCompleteMoreDifficult from "./views/TodoListReducerCompleteMoreDifficult";
 import TodoListReducer from "./views/TodoListReducer";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
@@ -31,6 +32,11 @@ function App() {
                   Todo List with useReducer using 3 components
                 </Link>
               </li>
+              <li>
+                <Link to="/todosusereducerdifficultcomplete">
+                  Todo List with useReducer more complex in 1
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -45,6 +51,10 @@ function App() {
               element={<TodoListReducerComplete />}
             />
             <Route path="/todosusereducerin3" element={<TodoListReducer />} />
+            <Route
+              path="/todosusereducerdifficultcomplete"
+              element={<TodoListReducerCompleteMoreDifficult />}
+            />
           </Routes>
         </div>
       </Router>

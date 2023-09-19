@@ -1,7 +1,9 @@
 # Todo Lists from easy to difficult:
 
+### So far, added:
+
 - Using useState with 1 and 3 components
-- Using useReducer with 1 and 3 components
+- Using useReducer with 1 and 3 components, easier and more complex.
 
 ## 🌟VITE
 

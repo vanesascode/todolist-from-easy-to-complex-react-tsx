@@ -4,6 +4,7 @@ interface Todo {
   id: number;
   text: string;
   completed: boolean;
+  isEditing: boolean;
 }
 
 //The | symbol in TypeScript represents a union type:
@@ -11,14 +12,22 @@ interface Todo {
 type TodoAction =
   | { type: "add"; text: string }
   | { type: "toggle"; id: number }
-  | { type: "delete"; id: number };
+  | { type: "delete"; id: number }
+  | { type: "startEditing"; id: number }
+  | { type: "edit"; id: number; text: string }
+  | { type: "save"; id: number };
 
 function todoReducer(todos: Todo[], action: TodoAction): Todo[] {
   switch (action.type) {
     case "add":
       return [
         ...todos,
-        { id: Date.now(), text: action.text, completed: false },
+        {
+          id: Date.now(),
+          text: action.text,
+          completed: false,
+          isEditing: false,
+        },
       ];
     case "toggle":
       return todos.map((todo) =>
@@ -26,6 +35,18 @@ function todoReducer(todos: Todo[], action: TodoAction): Todo[] {
       );
     case "delete":
       return todos.filter((todo) => todo.id !== action.id);
+    case "startEditing":
+      return todos.map((todo) =>
+        todo.id === action.id ? { ...todo, isEditing: true } : todo
+      );
+    case "edit":
+      return todos.map((todo) =>
+        todo.id === action.id ? { ...todo, text: action.text } : todo
+      );
+    case "save":
+      return todos.map((todo) =>
+        todo.id === action.id ? { ...todo, isEditing: false } : todo
+      );
     default:
       throw new Error("Unknown action type");
   }
@@ -57,6 +78,18 @@ function TodoList() {
 
   function handleDelete(id: number) {
     dispatch({ type: "delete", id });
+  }
+
+  function handleStartEditing(id: number) {
+    dispatch({ type: "startEditing", id });
+  }
+
+  function handleEdit(id: number, newText: string) {
+    dispatch({ type: "edit", id, text: newText });
+  }
+
+  function handleSave(id: number) {
+    dispatch({ type: "save", id });
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
@@ -94,7 +127,23 @@ function TodoList() {
               checked={todo.completed}
               onChange={() => handleToggle(todo.id)}
             />
-            <span>{todo.text}</span>
+            {todo.isEditing ? (
+              <input
+                type="text"
+                value={todo.text}
+                onChange={(event) => handleEdit(todo.id, event.target.value)}
+                onBlur={() => handleSave(todo.id)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    handleSave(todo.id);
+                  }
+                }}
+              />
+            ) : (
+              <span onClick={() => handleStartEditing(todo.id)}>
+                {todo.text}
+              </span>
+            )}
             <button onClick={() => handleDelete(todo.id)}>Delete</button>
           </li>
         ))}
