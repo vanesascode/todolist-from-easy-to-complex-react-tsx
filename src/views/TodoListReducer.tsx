@@ -1,4 +1,6 @@
-import { useReducer, KeyboardEvent, useState } from "react";
+import { useReducer, useState } from "react";
+import TodoItem from "../components/todolistreducer/TodoItem";
+import TodoInput from "../components/todolistreducer/TodoInput";
 
 interface Todo {
   id: number;
@@ -48,44 +50,24 @@ function TodoList() {
     dispatch({ type: "delete", id });
   }
 
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter" && event.currentTarget.value.trim()) {
-      handleAdd();
-    }
-  }
-
   return (
     <div>
-      {/*INPUT*/}
-      <div>
-        <input
-          type="text"
-          placeholder="useReducer in 1"
-          value={newTodoText}
-          onChange={(event) => setNewTodoText(event.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button onClick={handleAdd}>Add</button>
-      </div>
+      {/* INPUT */}
+      <TodoInput
+        newTodoText={newTodoText}
+        setNewTodoText={setNewTodoText}
+        handleAdd={handleAdd}
+      />
 
-      {/*LIST*/}
-
+      {/* LIST */}
       <ul>
         {todos.map((todo) => (
-          <li
+          <TodoItem
             key={todo.id}
-            style={{
-              textDecoration: todo.completed ? "line-through" : "none",
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => handleToggle(todo.id)}
-            />
-            <span>{todo.text}</span>
-            <button onClick={() => handleDelete(todo.id)}>Delete</button>
-          </li>
+            todo={todo}
+            handleToggle={handleToggle}
+            handleDelete={handleDelete}
+          />
         ))}
       </ul>
     </div>

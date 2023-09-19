@@ -46,7 +46,7 @@ function TodoList() {
       <div>
         <input
           type="text"
-          placeholder="Add todo"
+          placeholder="useState in 1"
           value={newTodoText}
           onChange={(event) => setNewTodoText(event.target.value)}
           onKeyDown={handleKeyDown}

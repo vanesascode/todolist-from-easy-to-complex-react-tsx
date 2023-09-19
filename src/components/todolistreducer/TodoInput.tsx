@@ -1,8 +1,8 @@
-import React, { KeyboardEvent } from "react";
+import { KeyboardEvent } from "react";
 
 interface TodoInputProps {
   newTodoText: string;
-  setNewTodoText: React.Dispatch<React.SetStateAction<string>>;
+  setNewTodoText: (text: string) => void;
   handleAdd: () => void;
 }
 
@@ -17,7 +17,7 @@ function TodoInput({ newTodoText, setNewTodoText, handleAdd }: TodoInputProps) {
     <div>
       <input
         type="text"
-        placeholder="useState in 3"
+        placeholder="useReducer in 3"
         value={newTodoText}
         onChange={(event) => setNewTodoText(event.target.value)}
         onKeyDown={handleKeyDown}

@@ -1,6 +1,7 @@
-# Budget tracker + React + Context API + TypeScript + Tailwind + Vite
+# Todo Lists from easy to difficult:
 
-In progress:
+- Using useState with 1 and 3 components
+- Using useReducer with 1 and 3 components
 
 ## 🌟VITE
 

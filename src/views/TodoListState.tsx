@@ -37,23 +37,25 @@ function TodoList() {
   }
 
   return (
-    <div>
-      <TodoInput
-        newTodoText={newTodoText}
-        setNewTodoText={setNewTodoText}
-        handleAdd={handleAdd}
-      />
-      <ul>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            handleToggle={handleToggle}
-            handleDelete={handleDelete}
-          />
-        ))}
-      </ul>
-    </div>
+    <>
+      <div>
+        <TodoInput
+          newTodoText={newTodoText}
+          setNewTodoText={setNewTodoText}
+          handleAdd={handleAdd}
+        />
+        <ul>
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              handleToggle={handleToggle}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 
