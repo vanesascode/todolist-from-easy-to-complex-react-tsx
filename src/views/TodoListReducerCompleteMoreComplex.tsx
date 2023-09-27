@@ -109,7 +109,9 @@ function TodoList() {
           onChange={(event) => setNewTodoText(event.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button onClick={handleAdd}>Add</button>
+        <button onClick={handleAdd}>
+          Add (you can then click on the todo and edit it)
+        </button>
       </div>
 
       {/*LIST*/}

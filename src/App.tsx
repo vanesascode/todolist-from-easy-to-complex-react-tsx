@@ -1,9 +1,9 @@
 import TodoListState from "./views/TodoListState";
 import TodoListStateComplete from "./views/TodoListStateComplete";
 import TodoListReducerComplete from "./views/TodoListReducerComplete";
-import TodoListReducerCompleteMoreDifficult from "./views/TodoListReducerCompleteMoreDifficult";
-
+import TodoListReducerCompleteMoreComplex from "./views/TodoListReducerCompleteMoreComplex";
 import TodoListReducer from "./views/TodoListReducer";
+import TodoListRedux from "./views/TodoListRedux";
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
@@ -12,35 +12,42 @@ function App() {
     <>
       <Router>
         <div>
+          {/* LIST OF TODOLISTS */}
+
           <nav>
             <ul>
               <li>
                 <Link to="/todosusestatecomplete">
-                  Todo List with useState using 1 component
+                  1 - Todo List with useState using 1 component
                 </Link>
               </li>
               <li>
                 <Link to="/todosusestatein3">
-                  Todo List with useState using 3 components
+                  2 - Todo List with useState using 3 components
                 </Link>
               </li>
               <li>
                 <Link to="/todosusereducercomplete">
-                  Todo List with useReducer using 1 component
+                  3 - Todo List with useReducer using 1 component
                 </Link>
               </li>
               <li>
                 <Link to="/todosusereducerin3">
-                  Todo List with useReducer using 3 components
+                  4 - Todo List with useReducer using 3 components
                 </Link>
               </li>
               <li>
-                <Link to="/todosusereducerdifficultcomplete">
-                  Todo List with useReducer more complex in 1
+                <Link to="/todosusereducercomplexcomplete">
+                  5 - Todo List with useReducer more complex in 1
                 </Link>
+              </li>
+              <li>
+                <Link to="/todosredux">6 - Todo List with Redux</Link>
               </li>
             </ul>
           </nav>
+
+          {/* ROUTES */}
 
           <Routes>
             <Route path="/todosusestatein3" element={<TodoListState />} />
@@ -54,9 +61,10 @@ function App() {
             />
             <Route path="/todosusereducerin3" element={<TodoListReducer />} />
             <Route
-              path="/todosusereducerdifficultcomplete"
-              element={<TodoListReducerCompleteMoreDifficult />}
+              path="/todosusereducercomplexcomplete"
+              element={<TodoListReducerCompleteMoreComplex />}
             />
+            <Route path="/todosredux" element={<TodoListRedux />} />
           </Routes>
         </div>
       </Router>

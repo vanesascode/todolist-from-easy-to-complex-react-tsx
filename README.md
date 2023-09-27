@@ -2,8 +2,18 @@
 
 ### So far, added:
 
-- Using useState with 1 and 3 components
-- Using useReducer with 1 and 3 components, easier and more complex.
+- Using `useState` with 1 and 3 components
+- Using `useReducer` with 1 and 3 components, easier and more complex.
+- Using `Redux`.
+
+## 🌟REDUX
+
+Installation:
+
+- [x] run: `react-redux`
+- [x] run: `@reduxjs/toolkit`
+
+See in the `main.tsx` and the the `store.tsx` (in redux folder) files the lines that says //redux template. They are a start for building over Redux.
 
 ## 🌟VITE
 
